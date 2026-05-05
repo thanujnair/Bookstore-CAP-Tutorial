@@ -1,4 +1,5 @@
 using BookstoreService as service from '../../srv/service';
+//annotate service.Books with @odata.draft.enabled;
 annotate service.Books with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
