@@ -25,6 +25,11 @@ annotate service.Books with @(
                 Criticality : status.criticality,
                 CriticalityRepresentation : #WithIcon,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : currency_code,
+                Label : 'Currency',
+            },
         ],
     },
     UI.Facets : [
@@ -210,4 +215,10 @@ annotate service.BookStatus with {
         Common.Text : displayText,
         Common.Text.@UI.TextArrangement : #TextOnly,
 )};
+
+annotate service.Books with {
+    currency @(
+        Common.ValueListWithFixedValues : true,
+        )
+};
 
