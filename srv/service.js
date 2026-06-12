@@ -1,10 +1,13 @@
+
+const { Books } = require('#cds-models/BookstoreService')
+const { Genre } = require('#cds-models/tutorial/db')
 const cds = require('@sap/cds') //Import of library cds
 
 module.exports = class BookstoreService extends cds.ApplicationService { init() {
 
-  const { Books } = cds.entities('BookstoreService')
+  //const { Books } = cds.entities('BookstoreService')
 
-  this.before (['READ'], Books, async (req) => {
+  this.before (['READ'], Books , async (req) => {
     console.log('Before READ Books')
   })
 
@@ -15,7 +18,7 @@ this.on ('READ', Books, async (req, next) => {
 
   this.after (['READ'], Books, async (books, req) => {
     for (const book of books) {
-      if (book.genre_code === 'Horror' ) {
+      if (book.genre_code === Genre.Horror) {
         book.price = book.price * 0.8
         book.title += ' *Discounted'
       }
