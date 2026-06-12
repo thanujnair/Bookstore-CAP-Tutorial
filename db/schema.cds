@@ -29,7 +29,6 @@ type Genre : String enum {
     Non_Fiction   = 'Non-Fiction';
 }
 
-
 entity Genres {
     key code        : Genre;
         description : String;
