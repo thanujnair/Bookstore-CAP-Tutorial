@@ -27,6 +27,7 @@ type Genre : String enum {
     Horror        = 'Horror';
     Romance       = 'Romance';
     Non_Fiction   = 'Non-Fiction';
+    Art           = 'Art';
 }
 
 entity Genres {
