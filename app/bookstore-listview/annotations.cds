@@ -34,6 +34,11 @@ annotate service.Books with @(
                 Value : genre_code,
                 Label : 'Genre',
             },
+            {
+                $Type : 'UI.DataField',
+                Value : stock,
+                Label : 'Stock',
+            },
         ],
     },
     UI.Facets : [
@@ -165,6 +170,11 @@ annotate service.Books with @(
             $Type : 'UI.DataFieldForAction',
             Action : 'BookstoreService.changePublishDate',
             Label : 'Change Publish Date',
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookstoreService.changeStatus',
+            Label : 'Change Status',
         },
     ],
 );

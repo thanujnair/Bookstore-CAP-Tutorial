@@ -28,6 +28,17 @@ module.exports = class BookstoreService extends cds.ApplicationService {
 
     })
 
+    this.on('changeStatus', Books, async (req) => {
+      console.log('Status changed for Book: ', req.data)
+      const bookID = req.params[0].ID
+      const newStatus = req.data.newStatus
+
+      await UPDATE(Books)           //Await needed as update is a promise. If not awaited, the function will return before the update is completed. And Async is used.
+        .set({ status_code: newStatus })
+        .where({ ID: bookID })
+
+    })
+
     this.before(['READ'], Books, async (req) => {
       console.log('Before READ Books')
     })
