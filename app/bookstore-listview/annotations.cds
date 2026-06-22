@@ -98,6 +98,11 @@ annotate service.Books with @(
             Value : stock,
             Label : 'Stock',
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookstoreService.addStock',
+            Label : 'Add Stock',
+        },
     ],
     UI.SelectionFields : [
         status_code,
@@ -150,6 +155,18 @@ annotate service.Books with @(
             },
         ],
     },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookstoreService.addStock',
+            Label : 'Add Stock',
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookstoreService.changePublishDate',
+            Label : 'Change Publish Date',
+        },
+    ],
 );
 
 annotate service.Books with {
