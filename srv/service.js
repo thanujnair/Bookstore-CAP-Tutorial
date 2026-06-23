@@ -8,6 +8,12 @@ module.exports = class BookstoreService extends cds.ApplicationService {
 
     //const { Books } = cds.entities('BookstoreService')
 
+    this.on('addDiscount', async (req) => {
+      await UPDATE(Books)           //Await needed as update is a promise. If not awaited, the function will return before the update is completed. And Async is used.
+        // .set({ price: { '*=': 0.9 } })      //Updates all Books. Simple function without rounding and decimal places limitation.
+        .set({ price: { func: 'ROUND', args: [{ xpr: [{ ref: ['price'] }, '*', { val: 0.9 }] }, { val: 2 }] } })
+    })
+
     this.on('addStock', Books, async (req) => {
       console.log('Stock added to Book: ', req.params[0])
       const bookID = req.params[0].ID

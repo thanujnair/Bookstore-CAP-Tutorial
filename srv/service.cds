@@ -23,6 +23,9 @@ service BookstoreService {
                                  }) newStatus: String); //Add annotations to make input parameter a dropdown list with the values from the BookStatus entity
         };
 
+    @(Common.SideEffects: {TargetEntities: ['/BookstoreService.EntityContainer/Books']})
+    action addDiscount();
+
     entity Authors    as projection on db.Authors;
     entity Chapters   as projection on db.Chapters;
     entity BookStatus as projection on db.BookStatus;
