@@ -5,6 +5,8 @@ using {
 //sap.common.Languages,
 } from '@sap/cds/common';
 
+using {Attachments} from '@cap-js/attachments';
+
 namespace tutorial.db;
 
 entity Books : cuid, managed {
@@ -24,10 +26,10 @@ entity Books : cuid, managed {
 }
 
 type Genre : String enum {
-    Horror        = 'Horror';
-    Romance       = 'Romance';
-    Non_Fiction   = 'Non-Fiction';
-    Art           = 'Art';
+    Horror = 'Horror';
+    Romance = 'Romance';
+    Non_Fiction = 'Non-Fiction';
+    Art = 'Art';
 }
 
 
@@ -56,9 +58,15 @@ type BookStatusCode : String(1) enum {
 */
 
 entity Authors : cuid, managed {
-    name  : String;
-    books : Association to many Books
-                on books.author = $self;
+    name        : String;
+    books       : Association to many Books
+                      on books.author = $self;
+    fileName    : String;
+    fileType    : String      @Core.IsMediaType; // Tells Application Programming Model that this property is a media type
+    content     : LargeBinary @Core.MediaType                  : fileType // Tells Application Programming Model which property has the file type
+                              //@Core.AcceptableMediaTypes       : [ 'application/pdf','application/vnd.ms-excel' ] //Filter types of acceptable file formats
+                              @Core.ContentDisposition.Filename: fileName;
+    attachments : Composition of many Attachments;
 //books : Association to many Authors2Books
 //on books.author = $self;
 }
