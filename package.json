@@ -1,6 +1,16 @@
 {
   "name": "bookstore",
   "version": "1.0.0",
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      }
+    }
+  },
   "dependencies": {
     "@cap-js/attachments": "^3.13.0",
     "@sap/cds": "^9.9.1",
