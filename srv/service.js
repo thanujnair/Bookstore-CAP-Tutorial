@@ -1,5 +1,5 @@
 
-const { Books } = require('#cds-models/BookstoreService')
+const { Books, Authors } = require('#cds-models/BookstoreService')
 const { Genre } = require('#cds-models/tutorial/db')
 const cds = require('@sap/cds') //Import of library cds
 
@@ -63,6 +63,21 @@ module.exports = class BookstoreService extends cds.ApplicationService {
       }
       console.log('After READ Books')
     })
+
+    this.after('READ', Authors, async (authors) => {
+      const ids = authors.map(author => author.ID)  //'author' is a temp variable here.
+      console.log('After READ Authors', ids)
+      const bookwCounts = await SELECT.from(Books)
+      .columns('author_ID',{func:'count'})
+      .where({author_ID: {in: ids}})
+      .groupBy('author_ID');
+      //Loop on All Autors and set the value in bookCount
+      for (const author of authors) {
+        //const bookwCount = bookwCounts.find(bookCount => bookCount.author_ID = author.ID)
+        //author.bookCount = bookwCount.count
+        author.bookCount = bookwCounts.find(bookCount => bookCount.author_ID = author.ID).count
+    }
+  })
 
     /*
       const { Books, Authors, GenresVH, BookStatus, Chapters } = cds.entities('BookstoreService')

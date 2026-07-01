@@ -58,15 +58,16 @@ type BookStatusCode : String(1) enum {
 */
 
 entity Authors : cuid, managed {
-    name        : String;
-    books       : Association to many Books
-                      on books.author = $self;
-    fileName    : String;
-    fileType    : String      @Core.IsMediaType; // Tells Application Programming Model that this property is a media type
-    content     : LargeBinary @Core.MediaType                  : fileType // Tells Application Programming Model which property has the file type
-                              //@Core.AcceptableMediaTypes       : [ 'application/pdf','application/vnd.ms-excel' ] //Filter types of acceptable file formats
-                              @Core.ContentDisposition.Filename: fileName;
-    attachments : Composition of many Attachments;
+    name              : String;
+    books             : Association to many Books
+                            on books.author = $self;
+    fileName          : String;
+    fileType          : String      @Core.IsMediaType; // Tells Application Programming Model that this property is a media type
+    content           : LargeBinary @Core.MediaType                  : fileType // Tells Application Programming Model which property has the file type
+                                    //@Core.AcceptableMediaTypes       : [ 'application/pdf','application/vnd.ms-excel' ] //Filter types of acceptable file formats
+                                    @Core.ContentDisposition.Filename: fileName;
+    attachments       : Composition of many Attachments;
+    virtual bookCount : Integer;
 //books : Association to many Authors2Books
 //on books.author = $self;
 }
