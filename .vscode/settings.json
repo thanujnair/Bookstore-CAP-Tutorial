@@ -1,0 +1,12 @@
+{
+    "cds.contributions": true,
+    "files.exclude": {
+        "**/node_modules": false,
+        "**/.dbx": true,
+        "**/gen": true
+    },
+    "editor.formatOnSave": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
+}

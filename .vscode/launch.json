@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "cds serve",
+            "args": [
+                "serve",
+                "--in-memory",
+                "--with-mocks"
+            ],
+            "runtimeExecutable": "cds",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+    ]
+}
